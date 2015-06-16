@@ -1,5 +1,11 @@
 ### jQuery collapsible JSON plugin
 
+fork from http://github.com/bazh/jquery.json-view
+modified for
+- better look when using bootstrap 3+ (css color scheme)
+- each value on tree has path attribute for further usage.
+
+
 #### Usage
 
 ```js

@@ -54,8 +54,9 @@
                 'class': cls,
                 html: htmlEncode(val)
             });
-        };        
+        };
 
+        var parentList=[];
         var genBlock = function(val, level) {
             switch($.type(val)) {
                 case 'object':
@@ -82,6 +83,7 @@
                     });
 
                     $.each(val, function(key, data) {
+                        parentList.push(key);
                         cnt--;
                         var item = $('<li />')
                             .append(span('"', 'q'))
@@ -92,6 +94,7 @@
 
                         if (['object', 'array'].indexOf($.type(data)) !== -1 && !$.isEmptyObject(data)) {
                             item.prepend(collapser());
+                            parentList.pop();
                         }
 
                         if (cnt > 0) {
@@ -137,6 +140,7 @@
                     });
 
                     $.each(val, function(key, data) {
+                        // parentList.push(key);
                         cnt--;
                         var item = $('<li />')
                             .append(genBlock(data, level + 1));
@@ -150,6 +154,7 @@
                         }
 
                         items.append(item);
+                        // parentList.pop();
                     });
 
                     output.append(items);
@@ -181,8 +186,11 @@
                         }
                     }
 
-                    var text = $('<span />', { 'class': 'str' })
-                        .html(val);
+                    // console.log(parentList);
+                    var parpath=parentList.join(".");
+                    parentList.pop();
+
+                    var text = $('<a />', { 'class': 'value str', 'href':'#', 'path':parpath}).html(val);
 
                     return $('<span />')
                         .append(span('"', 'q'))
@@ -190,16 +198,36 @@
                         .append(span('"', 'q'));
 
                 case 'number':
-                    return span(val.toString(), 'num');
+                    // console.log(parentList);
+                    var parpath=parentList.join(".");
+                    parentList.pop();
+                    var retval=$('<a />', {'class':'value  num', 'href':'#', 'path':parpath}).html(val.toString());
+                    // return span(val.toString(), 'num');
+                    return retval;
 
                 case 'undefined':
-                    return span('undefined', 'undef');
+                    // console.log(parentList);
+                    var parpath=parentList.join(".");
+                    parentList.pop();
+                    var retval=$('<a />', {'class':'value  undef', 'href':'#', 'path':parpath}).html('undefined');
+                    // return span('undefined', 'undef');
+                    return retval;
 
                 case 'null':
-                    return span('null', 'null');
+                    // console.log(parentList);
+                    var parpath=parentList.join(".");
+                    parentList.pop();
+                    var retval=$('<a />', {'class':'value  null', 'href':'#', 'path':parpath}).html('null');
+                    // return span('null', 'null');
+                    return retval;
 
                 case 'boolean':
-                    return span(val ? 'true' : 'false', 'bool');
+                    // console.log(parentList);
+                    var parpath=parentList.join(".");
+                    parentList.pop();
+                    var retval=$('<a />', {'class':'value bool', 'href':'#', 'path':parpath}).html(val.toString());
+                    // return span(val ? 'true' : 'false', 'bool');
+                    return retval;
             }
         };
 

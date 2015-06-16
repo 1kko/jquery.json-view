@@ -48,7 +48,7 @@
                 'class': cls,
                 html: htmlEncode(val)
             });
-        };        
+        };
 
         var parentList=[];
         var genBlock = function(val, level) {
@@ -88,6 +88,7 @@
 
                         if (['object', 'array'].indexOf($.type(data)) !== -1 && !$.isEmptyObject(data)) {
                             item.prepend(collapser());
+                            parentList.pop();
                         }
 
                         if (cnt > 0) {
@@ -96,7 +97,6 @@
 
                         items.append(item);
                     });
-                    parentList.pop();
 
                     output.append(items);
                     output.append(span('...', 'dots'));
@@ -180,11 +180,11 @@
                         }
                     }
 
+                    // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
 
-                    var text = $('<a />', { 'class': 'str', 'href':'#', 'path':parpath})
-                        .html(val);
+                    var text = $('<a />', { 'class': 'value str', 'href':'#', 'path':parpath}).html(val);
 
                     return $('<span />')
                         .append(span('"', 'q'))
@@ -192,30 +192,34 @@
                         .append(span('"', 'q'));
 
                 case 'number':
+                    // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
-                    var retval=$('<a />', {'class':'num', 'href':'#', 'path':parpath}).html(val.toString());
+                    var retval=$('<a />', {'class':'value  num', 'href':'#', 'path':parpath}).html(val.toString());
                     // return span(val.toString(), 'num');
                     return retval;
 
                 case 'undefined':
+                    // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
-                    var retval=$('<a />', {'class':'undef', 'href':'#', 'path':parpath}).html('undefined');
+                    var retval=$('<a />', {'class':'value  undef', 'href':'#', 'path':parpath}).html('undefined');
                     // return span('undefined', 'undef');
                     return retval;
 
                 case 'null':
+                    // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
-                    var retval=$('<a />', {'class':'null', 'href':'#', 'path':parpath}).html('null');
+                    var retval=$('<a />', {'class':'value  null', 'href':'#', 'path':parpath}).html('null');
                     // return span('null', 'null');
                     return retval;
 
                 case 'boolean':
+                    // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
-                    var retval=$('<a />', {'class':'bool', 'href':'#', 'path':parpath}).html(val.toString());
+                    var retval=$('<a />', {'class':'value bool', 'href':'#', 'path':parpath}).html(val.toString());
                     // return span(val ? 'true' : 'false', 'bool');
                     return retval;
             }

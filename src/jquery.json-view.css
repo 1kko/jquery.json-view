@@ -62,17 +62,25 @@
 .json-view .comments {
     padding-left: 0.8em;
     font-style: italic;
-    color: #888;
+    color: #444;
 }
 
-.json-view .null,
-.json-view .num,
+.json-view .num {
+    font-weight:bold;
+    color: #4bb0ce;
+}
+
+.json-view .null {
+    font-style: italic;
+    color: #d08d2e;
+}
+
 .json-view .bool,
 .json-view .undef {
     font-weight: bold;
-    color: #1A01CC;
+    color: #7D4Da8;
 }
 
 .json-view .str {
-    color: #800;
+    color: #c9433f;
 }
