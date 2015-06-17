@@ -190,7 +190,7 @@
                     var parpath=parentList.join(".");
                     parentList.pop();
 
-                    var text = $('<a />', { 'class': 'value str', 'href':'#', 'path':parpath}).html(val);
+                    var text = $('<a />', { 'class': 'value str', 'href':'#/', 'path':parpath}).html(val);
 
                     return $('<span />')
                         .append(span('"', 'q'))
@@ -201,7 +201,7 @@
                     // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
-                    var retval=$('<a />', {'class':'value  num', 'href':'#', 'path':parpath}).html(val.toString());
+                    var retval=$('<a />', {'class':'value  num', 'href':'#/', 'path':parpath}).html(val.toString());
                     // return span(val.toString(), 'num');
                     return retval;
 
@@ -209,7 +209,7 @@
                     // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
-                    var retval=$('<a />', {'class':'value  undef', 'href':'#', 'path':parpath}).html('undefined');
+                    var retval=$('<a />', {'class':'value  undef', 'href':'#/', 'path':parpath}).html('undefined');
                     // return span('undefined', 'undef');
                     return retval;
 
@@ -217,7 +217,7 @@
                     // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
-                    var retval=$('<a />', {'class':'value  null', 'href':'#', 'path':parpath}).html('null');
+                    var retval=$('<a />', {'class':'value  null', 'href':'#/', 'path':parpath}).html('null');
                     // return span('null', 'null');
                     return retval;
 
@@ -225,7 +225,7 @@
                     // console.log(parentList);
                     var parpath=parentList.join(".");
                     parentList.pop();
-                    var retval=$('<a />', {'class':'value bool', 'href':'#', 'path':parpath}).html(val.toString());
+                    var retval=$('<a />', {'class':'value bool', 'href':'#/', 'path':parpath}).html(val.toString());
                     // return span(val ? 'true' : 'false', 'bool');
                     return retval;
             }
